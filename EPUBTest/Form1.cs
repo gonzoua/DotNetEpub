@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using EPubDocument = Epub.Document;
 
 namespace EPUBTest
 {
@@ -18,7 +19,9 @@ namespace EPUBTest
 
         private void testButton_Click(object sender, EventArgs e)
         {
-
+            var epub = new EPubDocument();
+            epub.AddAuthor("Jack London");
+            epub.Generate();
         }
     }
 }
