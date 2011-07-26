@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Epub.Metadata
+namespace Epub
 {
     class DCItem
     {
@@ -13,12 +13,12 @@ namespace Epub.Metadata
         private XElement _element;
         XNamespace dc = "http://purl.org/dc/elements/1.1/";
         XNamespace opf = "http://www.idpf.org/2007/opf";
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private IDictionary<string, string> _attributes;
         public DCItem(string name, string value)
         {
             _name = name;
             _value = value;
-
+            _attributes = new Dictionary<string, string>();
             _element = new XElement(dc + _name, _value);
         }
 
@@ -29,7 +29,6 @@ namespace Epub.Metadata
 
         public XElement ToElement()
         {
-
             return _element;
         }
     }

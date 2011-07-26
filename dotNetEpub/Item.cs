@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Epub.Metadata
+namespace Epub
 {
     class Item
     {

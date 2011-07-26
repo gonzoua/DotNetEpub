@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Epub.Metadata;
+using Epub;
 using System.Xml.Linq;
 
 namespace Epub
 {
-    class MetaData
+    class Metadata
     {
         private List<DCItem> _dcItems = new List<DCItem>();
         private List<Item> _items = new List<Item>();
