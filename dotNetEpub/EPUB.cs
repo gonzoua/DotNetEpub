@@ -13,11 +13,13 @@ namespace Epub
         private Metadata _metadata;
         private Manifest _manifest;
         private Spine _spine;
+        private Guide _guide;
         public Document()
         {
             _metadata = new Metadata();
             _manifest = new Manifest();
             _spine = new Spine();
+            _guide = new Guide();
         }
 
         public void AddAuthor(string author)
@@ -29,10 +31,10 @@ namespace Epub
         {
             var packageElement = new XElement("package");
             
-
             packageElement.Add(_metadata.ToElement());
             packageElement.Add(_manifest.ToElement());
             packageElement.Add(_spine.ToElement());
+            packageElement.Add(_guide.ToElement());
 
             Debug.WriteLine(packageElement.ToString());
         }

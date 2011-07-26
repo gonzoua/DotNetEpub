@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DCItem.cs" />
     <Compile Include="EPUB.cs" />
+    <Compile Include="Guide.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Manifest.cs" />
     <Compile Include="Metadata.cs" />
