@@ -12,10 +12,12 @@ namespace Epub
     {
         private Metadata _metadata;
         private Manifest _manifest;
+        private Spine _spine;
         public Document()
         {
             _metadata = new Metadata();
             _manifest = new Manifest();
+            _spine = new Spine();
         }
 
         public void AddAuthor(string author)
@@ -30,6 +32,7 @@ namespace Epub
 
             packageElement.Add(_metadata.ToElement());
             packageElement.Add(_manifest.ToElement());
+            packageElement.Add(_spine.ToElement());
 
             Debug.WriteLine(packageElement.ToString());
         }
@@ -42,8 +45,7 @@ namespace Epub
         public void AddXhtml(string href)
         {
             _manifest.AddItem("html1", href, "application/xhtml+xml");
+            _spine.AddItemRef("html1", false);
         }
-
-
     }
 }
