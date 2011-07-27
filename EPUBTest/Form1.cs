@@ -21,7 +21,7 @@ namespace EPUBTest
         {
             var epub = new EPubDocument();
             epub.AddAuthor("Jack London");
-            epub.AddCss("style.css");
+            epub.AddStylesheet("style.css");
             epub.AddXhtml("page1.xhtml");
             epub.Generate();
         }

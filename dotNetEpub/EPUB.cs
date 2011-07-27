@@ -15,6 +15,7 @@ namespace Epub
         private Spine _spine;
         private Guide _guide;
         private NCX _ncx;
+        private Dictionary<string, int> _ids;
 
         public Document()
         {
@@ -23,6 +24,25 @@ namespace Epub
             _spine = new Spine();
             _guide = new Guide();
             _ncx = new NCX();
+
+            _ids = new Dictionary<string, int>();
+        }
+
+        private string GetNextId(string kind)
+        {
+            string id;
+            if (_ids.Keys.Contains(kind))
+            {
+                _ids[kind] += 1;
+                id = kind + _ids[kind].ToString();
+            }
+            else
+            {
+                id = kind + "1";
+                _ids[kind] = 1;
+            }
+
+            return id;
         }
 
         public void AddAuthor(string author)
@@ -32,6 +52,9 @@ namespace Epub
 
         public void Generate()
         {
+            NavPoint n = _ncx.AddNavPoint("Chapter1", "html1", "chapter1.xhtml", 1);
+            n.Add("Part 1", "html2", "chapter1.xhtml#part1", 2);
+
             var packageElement = new XElement("package");
             
             packageElement.Add(_metadata.ToElement());
@@ -44,17 +67,56 @@ namespace Epub
             Debug.WriteLine(_ncx.ToXml());
         }
 
-        public void AddCss(string href)
+        public string AddEntry(string path, string type)
         {
-            _manifest.AddItem("css1", href, "text/css");
+            string id = GetNextId("id");
+            _manifest.AddItem(id, path, type);
+            return id;
         }
 
-        public void AddXhtml(string href)
+        public string AddStylesheetEntry(string path)
         {
-            _manifest.AddItem("html1", href, "application/xhtml+xml");
-            _spine.AddItemRef("html1", false);
-            NavPoint n = _ncx.AddNavPoint("Chapter1", "html1", "chapter1.xhtml", 1);
-            n.Add("Part 1", "html2", "chapter1.xhtml#part1", 2);
+            string id = GetNextId("stylesheet");
+            _manifest.AddItem(id, path, "text/css");
+
+            return id;
+        }
+
+        public string AddXhtmlEntry(string path)
+        {
+            return AddXhtml(path, true);
+        }
+
+        public string AddXhtmlEntry(string path, bool linear)
+        {
+            string id = GetNextId("html");
+            _manifest.AddItem(id, path, "application/xhtml+xml");
+            _spine.AddItemRef(id, linear);
+
+            return id;
+        }
+
+        public string AddImageEntry(string path)
+        {
+            string id = GetNextId("img");
+            string contentType = String.Empty;
+            string lower = path.ToLower();
+            if (lower.EndsWith(".jpg") || lower.EndsWith(".jpeg"))
+                contentType = "image/jpeg";
+            else if (lower.EndsWith(".png"))
+                contentType = "image/png";
+            else if (lower.EndsWith(".gif"))
+                contentType = "image/gif";
+            else if (lower.EndsWith(".svg"))
+                contentType = "image/svg+xml";
+            else
+            {
+                // TODO: throw exception here?
+            }
+
+            _manifest.AddItem(id, path, contentType);
+
+            return id;
         }
     }
 }
