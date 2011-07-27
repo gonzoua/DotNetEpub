@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Diagnostics;
 using System.Xml.Linq;
 using Epub;
@@ -17,6 +18,11 @@ namespace Epub
         private NCX _ncx;
         private Dictionary<string, int> _ids;
 
+        // several variables is just for convenience
+        private string _tempDirectory;
+        private string _opfDirectory;
+        private string _metainfDirectory;
+
         public Document()
         {
             _metadata = new Metadata();
@@ -26,6 +32,41 @@ namespace Epub
             _ncx = new NCX();
 
             _ids = new Dictionary<string, int>();
+        }
+
+        private string GetTempDirectory()
+        {
+            if (String.IsNullOrEmpty(_tempDirectory))
+            {
+                _tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                Directory.CreateDirectory(_tempDirectory);
+            }
+
+            return _tempDirectory;
+        }
+
+        private string GetOpfDirectory()
+        {
+            if (String.IsNullOrEmpty(_opfDirectory))
+            {
+                string tempDirectory = GetTempDirectory();
+                _opfDirectory = Path.Combine(tempDirectory, "OPF");
+                Directory.CreateDirectory(_opfDirectory);
+            }
+
+            return _opfDirectory;
+        }
+
+        private string GetMetaInfDirectory()
+        {
+            if (String.IsNullOrEmpty(_metainfDirectory))
+            {
+                string tempDirectory = GetTempDirectory();
+                _metainfDirectory = Path.Combine(tempDirectory, "META-INF");
+                Directory.CreateDirectory(_metainfDirectory);
+            }
+
+            return _metainfDirectory;
         }
 
         private string GetNextId(string kind)
@@ -67,14 +108,14 @@ namespace Epub
             Debug.WriteLine(_ncx.ToXml());
         }
 
-        public string AddEntry(string path, string type)
+        private string AddEntry(string path, string type)
         {
             string id = GetNextId("id");
             _manifest.AddItem(id, path, type);
             return id;
         }
 
-        public string AddStylesheetEntry(string path)
+        private string AddStylesheetEntry(string path)
         {
             string id = GetNextId("stylesheet");
             _manifest.AddItem(id, path, "text/css");
@@ -82,12 +123,12 @@ namespace Epub
             return id;
         }
 
-        public string AddXhtmlEntry(string path)
+        private string AddXhtmlEntry(string path)
         {
-            return AddXhtml(path, true);
+            return AddXhtmlEntry(path, true);
         }
 
-        public string AddXhtmlEntry(string path, bool linear)
+        private string AddXhtmlEntry(string path, bool linear)
         {
             string id = GetNextId("html");
             _manifest.AddItem(id, path, "application/xhtml+xml");
@@ -96,7 +137,7 @@ namespace Epub
             return id;
         }
 
-        public string AddImageEntry(string path)
+        private string AddImageEntry(string path)
         {
             string id = GetNextId("img");
             string contentType = String.Empty;
@@ -117,6 +158,87 @@ namespace Epub
             _manifest.AddItem(id, path, contentType);
 
             return id;
+        }
+
+        private void CopyFile(string path, string epubPath)
+        {
+            string fullPath = Path.Combine(GetOpfDirectory(), epubPath);
+            EnsureDirectoryExists(fullPath);
+            File.Copy(path, fullPath);
+        }
+
+        private string EnsureDirectoryExists(string path)
+        {
+            // TODO: ensure epubPath contains no ..\..\
+
+            string destDir = Path.GetDirectoryName(path);
+            if (!Directory.Exists(destDir))
+                Directory.CreateDirectory(destDir);
+            return path;
+        }
+
+        private void WriteFile(string epubPath, byte[] content)
+        {
+            string fullPath = Path.Combine(GetOpfDirectory(), epubPath);
+            EnsureDirectoryExists(fullPath);
+            File.WriteAllBytes(fullPath, content);
+        }
+
+        private void WriteFile(string epubPath, string content)
+        {
+            string fullPath = Path.Combine(GetOpfDirectory(), epubPath);
+            EnsureDirectoryExists(fullPath);
+            File.WriteAllText(fullPath, content, Encoding.UTF8);
+        }
+
+
+        public string AddImageFile(string path, string epubPath)
+        {
+            CopyFile(path, epubPath);
+            return AddImageEntry(epubPath);
+        }
+
+        public string AddStylesheetFile(string path, string epubPath)
+        {
+            CopyFile(path, epubPath);
+            return AddStylesheetEntry(epubPath);
+        }
+
+        public string AddXhtmlFile(string path, string epubPath)
+        {
+            CopyFile(path, epubPath);
+            return AddXhtmlEntry(epubPath);
+        }
+
+        public string AddFile(string path, string epubPath, string mediaType)
+        {
+            CopyFile(path, epubPath);
+            return AddEntry(epubPath, mediaType);
+        }
+
+        // Data versions of AddNNN functions
+        public string AddImageData(string epubPath, byte[] content)
+        {
+            WriteFile(epubPath, content);
+            return AddImageEntry(epubPath);
+        }
+
+        public string AddStylesheetData(string epubPath, string content)
+        {
+            WriteFile(content, epubPath);
+            return AddStylesheetEntry(epubPath);
+        }
+
+        public string AddXhtmlData(string epubPath, string content)
+        {
+            WriteFile(content, epubPath);
+            return AddXhtmlEntry(epubPath);
+        }
+
+        public string AddData(string epubPath, byte[] content, string mediaType)
+        {
+            WriteFile(epubPath, content);
+            return AddEntry(epubPath, mediaType);
         }
     }
 }
