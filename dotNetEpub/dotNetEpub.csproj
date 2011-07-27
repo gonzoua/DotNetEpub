@@ -46,6 +46,8 @@
     <Compile Include="Item.cs" />
     <Compile Include="Manifest.cs" />
     <Compile Include="Metadata.cs" />
+    <Compile Include="NavPoint.cs" />
+    <Compile Include="NCX.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spine.cs" />
   </ItemGroup>

@@ -14,12 +14,15 @@ namespace Epub
         private Manifest _manifest;
         private Spine _spine;
         private Guide _guide;
+        private NCX _ncx;
+
         public Document()
         {
             _metadata = new Metadata();
             _manifest = new Manifest();
             _spine = new Spine();
             _guide = new Guide();
+            _ncx = new NCX();
         }
 
         public void AddAuthor(string author)
@@ -37,6 +40,8 @@ namespace Epub
             packageElement.Add(_guide.ToElement());
 
             Debug.WriteLine(packageElement.ToString());
+            Debug.WriteLine("----");
+            Debug.WriteLine(_ncx.ToXml());
         }
 
         public void AddCss(string href)
@@ -48,6 +53,8 @@ namespace Epub
         {
             _manifest.AddItem("html1", href, "application/xhtml+xml");
             _spine.AddItemRef("html1", false);
+            NavPoint n = _ncx.AddNavPoint("Chapter1", "html1", "chapter1.xhtml", 1);
+            n.Add("Part 1", "html2", "chapter1.xhtml#part1", 2);
         }
     }
 }
