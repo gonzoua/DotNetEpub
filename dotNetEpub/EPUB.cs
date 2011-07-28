@@ -10,9 +10,6 @@ using Ionic.Zip;
 
 namespace Epub
 {
-
-
-
     public class Document
     {
         static public XNamespace OpfNS = "http://www.idpf.org/2007/opf";
@@ -45,6 +42,7 @@ namespace Epub
             _manifest.AddItem("ncx", "toc.ncx", "application/x-dtbncx+xml");
             _spine.SetToc("ncx");
             _container.AddRootFile("OPF/toc.ncx", "application/oebps-package+xml");
+            _ncx.SetUid("foo");
         }
 
         ~Document()
@@ -109,6 +107,13 @@ namespace Epub
         public void AddAuthor(string author)
         {
             _metadata.AddAuthor(author);
+            _ncx.AddAuthor(author);
+        }
+
+        public void AddTitle(string title)
+        {
+            _metadata.AddTitle(title);
+            _ncx.AddTitle(title);
         }
 
         public void Generate(string epubFile)
