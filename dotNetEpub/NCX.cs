@@ -26,7 +26,9 @@ namespace Epub
 
         public XDocument ToXmlDocument()
         {
-            XDocument topDoc = new XDocument();
+            XDocument topDoc = new XDocument(
+                new XDocumentType("ncx", "-//NISO//DTD ncx 2005-1//EN",
+                    "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd", null));
             XElement navMap = new XElement("navMap");
             foreach (NavPoint n in _navpoints) 
             {
