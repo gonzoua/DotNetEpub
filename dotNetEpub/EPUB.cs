@@ -276,8 +276,8 @@ namespace Epub
         private void WriteNcx(string ncxFilePath)
         {
             string fullPath = Path.Combine(GetOpfDirectory(), ncxFilePath);
-            string ncx = _ncx.ToXml();
-            File.WriteAllText(fullPath, ncx, Encoding.UTF8);
+            XDocument ncx = _ncx.ToXmlDocument();
+            ncx.Save(fullPath);
         }
 
         private void WriteContainer()

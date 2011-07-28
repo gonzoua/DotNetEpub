@@ -24,7 +24,7 @@ namespace Epub
             _navpoints = new List<NavPoint>();
         }
 
-        public string ToXml()
+        public XDocument ToXmlDocument()
         {
             XDocument topDoc = new XDocument();
             XElement navMap = new XElement("navMap");
@@ -33,7 +33,7 @@ namespace Epub
                 navMap.Add(n.ToElement());
             }
             topDoc.Add(navMap);
-            return topDoc.ToString();
+            return topDoc;
         }
 
         public NavPoint AddNavPoint(string label, string id, string content, int playOrder)
