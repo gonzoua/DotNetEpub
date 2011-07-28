@@ -8,23 +8,47 @@ namespace Epub
 {
     class Spine
     {
-        XElement _element;
+        private struct ItemRef
+        {
+            public string id;
+            public bool linear;
+        };
+
+
+        private string _toc;
+        private List<ItemRef> _itemRefs;
+
         public Spine()
         {
-            _element = new XElement("spine");
+            _itemRefs = new List<ItemRef>();
+        }
+
+        public void SetToc(string toc)
+        {
+            _toc = toc;
         }
 
         public void AddItemRef(string id, bool linear)
         {
-            var item = new XElement("itemref", new XAttribute("idref", id));
-            if (!linear)
-                item.SetAttributeValue("linear", "no");
-            _element.Add(item);
+            ItemRef r;
+            r.id = id;
+            r.linear = linear;
+            _itemRefs.Add(r);
         }
 
         public XElement ToElement()
         {
-            return _element;
+            XElement element = new XElement("spine");
+            if (String.IsNullOrEmpty(_toc))
+                element.Add(new XAttribute("toc", _toc));
+            foreach (ItemRef r in _itemRefs)
+            {
+                var item = new XElement("itemref", new XAttribute("idref", r.id));
+                if (!r.linear)
+                    item.SetAttributeValue("linear", "no");
+                element.Add(item);
+            }
+            return element;
         }
     }
 }
