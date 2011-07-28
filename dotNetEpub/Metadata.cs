@@ -26,7 +26,12 @@ namespace Epub
 
         public XElement ToElement()
         {
-            var element = new XElement("metadata");
+            XNamespace dc = "http://purl.org/dc/elements/1.1/";
+            XNamespace opf = "http://www.idpf.org/2007/opf";
+
+            var element = new XElement("metadata",
+                new XAttribute(XNamespace.Xmlns + "dc", dc),
+                new XAttribute(XNamespace.Xmlns + "opf", opf));
 
             foreach (Item i in _items) {
                 var itemElement = i.ToElement();
