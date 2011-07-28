@@ -23,9 +23,12 @@ namespace EPUBTest
             var epub = new EPubDocument();
             epub.AddAuthor("Jack London");
             epub.AddStylesheetFile("style.css", "style.css");
-            epub.AddXhtmlFile("page1.xhtml", "page1.xhtml");
-            NavPoint n = epub.AddNavPoint("Chapter1", "html1", "chapter1.xhtml", 1);
-            n.Add("Part 1", "html2", "chapter1.xhtml#part1", 2);
+            string id1 = epub.AddXhtmlFile("page0001.xhtml", "page0001.xhtml");
+            string id2 = epub.AddXhtmlFile("page0002.xhtml", "page0002.xhtml");
+            string id3 = epub.AddXhtmlFile("page0003.xhtml", "page0003.xhtml");
+            epub.AddNavPoint("Chapter1", id1, "page0001.xhtml", 1);
+            epub.AddNavPoint("Chapter2", id2, "page0002.xhtml", 2);
+            epub.AddNavPoint("Chapter3", id3, "page0003.xhtml", 3);
 
             epub.Generate();
         }

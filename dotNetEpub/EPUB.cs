@@ -39,11 +39,12 @@ namespace Epub
 
         private string GetTempDirectory()
         {
-            if (String.IsNullOrEmpty(_tempDirectory))
+            if (false && String.IsNullOrEmpty(_tempDirectory))
             {
                 _tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
                 Directory.CreateDirectory(_tempDirectory);
             }
+            _tempDirectory = "C:\\EPUB\\test.epub";
 
             return _tempDirectory;
         }
