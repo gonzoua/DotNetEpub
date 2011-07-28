@@ -10,8 +10,14 @@ using Ionic.Zip;
 
 namespace Epub
 {
+
+
+
     public class Document
     {
+        static public XNamespace OpfNS = "http://www.idpf.org/2007/opf";
+        static public XNamespace DcNS = "http://purl.org/dc/elements/1.1/";
+
         private Metadata _metadata;
         private Manifest _manifest;
         private Spine _spine;
@@ -257,7 +263,7 @@ namespace Epub
         {
             string fullPath = Path.Combine(GetOpfDirectory(), opfFilePath);
 
-            var packageElement = new XElement("package", new XAttribute("version", "2.0"), new XAttribute("unique-identifier", "BookId"));
+            var packageElement = new XElement(Document.OpfNS + "package", new XAttribute("version", "2.0"), new XAttribute("unique-identifier", "BookId"));
 
             packageElement.Add(_metadata.ToElement());
             packageElement.Add(_manifest.ToElement());

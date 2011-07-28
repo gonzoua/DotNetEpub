@@ -27,14 +27,11 @@ namespace Epub
 
         public XElement ToElement()
         {
-            XNamespace dc = "http://purl.org/dc/elements/1.1/";
-            XNamespace opf = "http://www.idpf.org/2007/opf";
-
-            XElement element = new XElement(dc + _name, _value);
+            XElement element = new XElement(Document.DcNS + _name, _value);
             foreach (string key in _attributes.Keys)
             {
                 string value = _attributes[key];
-                element.SetAttributeValue(opf + key, value);
+                element.SetAttributeValue(Document.OpfNS + key, value);
             }
             return element;
         }
