@@ -6,6 +6,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Xml.Linq;
 using Epub;
+using Ionic.Zip;
 
 namespace Epub
 {
@@ -38,6 +39,12 @@ namespace Epub
             _manifest.AddItem("ncx", "toc.ncx", "application/x-dtbncx+xml");
             _spine.SetToc("ncx");
             _container.AddRootFile("OPF/toc.ncx", "application/oebps-package+xml");
+        }
+
+        ~Document()
+        {
+            if (!String.IsNullOrEmpty(_tempDirectory))
+                Directory.Delete(_tempDirectory, true);
         }
 
         private string GetTempDirectory()
@@ -98,11 +105,19 @@ namespace Epub
             _metadata.AddAuthor(author);
         }
 
-        public void Generate()
+        public void Generate(string epubFile)
         {
             WriteOpf("content.opf");
             WriteNcx("toc.ncx");
             WriteContainer();
+
+            using (ZipFile zip = new ZipFile())
+            {
+                var entry = zip.AddEntry("mimetype", "application/epub+zip", Encoding.ASCII);
+                entry.CompressionLevel = Ionic.Zlib.CompressionLevel.None;
+                zip.AddDirectory(GetTempDirectory());
+                zip.Save(epubFile);
+            }
         }
 
         private string AddEntry(string path, string type)
@@ -249,7 +264,7 @@ namespace Epub
             packageElement.Add(_spine.ToElement());
             packageElement.Add(_guide.ToElement());
 
-            File.WriteAllText(fullPath, packageElement.ToString(), Encoding.UTF8);
+            packageElement.Save(fullPath);
         }
 
         private void WriteNcx(string ncxFilePath)

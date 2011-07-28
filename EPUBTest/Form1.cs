@@ -30,7 +30,7 @@ namespace EPUBTest
             epub.AddNavPoint("Chapter2", id2, "page0002.xhtml", 2);
             epub.AddNavPoint("Chapter3", id3, "page0003.xhtml", 3);
 
-            epub.Generate();
+            epub.Generate("C:\\EPUB\\x.epub");
         }
     }
 }
