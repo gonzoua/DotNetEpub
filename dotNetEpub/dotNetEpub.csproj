@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Container.cs" />
     <Compile Include="DCItem.cs" />
     <Compile Include="EPUB.cs" />
     <Compile Include="Guide.cs" />

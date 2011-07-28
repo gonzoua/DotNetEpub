@@ -16,6 +16,7 @@ namespace Epub
         private Spine _spine;
         private Guide _guide;
         private NCX _ncx;
+        private Container _container;
         private Dictionary<string, int> _ids;
 
         // several variables is just for convenience
@@ -30,11 +31,13 @@ namespace Epub
             _spine = new Spine();
             _guide = new Guide();
             _ncx = new NCX();
+            _container = new Container();
             _ids = new Dictionary<string, int>();
 
             // setup mandatory TOC file
             _manifest.AddItem("ncx", "toc.ncx", "application/x-dtbncx+xml");
             _spine.SetToc("ncx");
+            _container.AddRootFile("OPF/toc.ncx", "application/oebps-package+xml");
         }
 
         private string GetTempDirectory()
@@ -97,9 +100,9 @@ namespace Epub
 
         public void Generate()
         {
-
             WriteOpf("content.opf");
             WriteNcx("toc.ncx");
+            WriteContainer();
         }
 
         private string AddEntry(string path, string type)
@@ -254,6 +257,13 @@ namespace Epub
             string fullPath = Path.Combine(GetOpfDirectory(), ncxFilePath);
             string ncx = _ncx.ToXml();
             File.WriteAllText(fullPath, ncx, Encoding.UTF8);
+        }
+
+        private void WriteContainer()
+        {
+            string fullPath = Path.Combine(GetMetaInfDirectory(), "container.xml");
+            XElement e = _container.ToElement();
+            e.Save(fullPath);
         }
 
         public NavPoint AddNavPoint(string label, string id, string content, int playOrder)
