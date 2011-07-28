@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace Epub
 {
-    class NavPoint
+    public class NavPoint
     {
         private string _label;
         private string _id;
