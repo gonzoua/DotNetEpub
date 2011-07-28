@@ -24,6 +24,12 @@ namespace Epub
             _dcItems.Add(dcitem);
         }
 
+        public void AddTitle(string title)
+        {
+            DCItem dcitem = new DCItem("title", title);
+            _dcItems.Add(dcitem);
+        }
+
         public XElement ToElement()
         {
             XNamespace dc = "http://purl.org/dc/elements/1.1/";
