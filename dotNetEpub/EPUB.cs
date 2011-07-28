@@ -30,8 +30,11 @@ namespace Epub
             _spine = new Spine();
             _guide = new Guide();
             _ncx = new NCX();
-
             _ids = new Dictionary<string, int>();
+
+            // setup mandatory TOC file
+            _manifest.AddItem("ncx", "toc.ncx", "application/x-dtbncx+xml");
+            _spine.SetToc("ncx");
         }
 
         private string GetTempDirectory()
@@ -93,19 +96,9 @@ namespace Epub
 
         public void Generate()
         {
-            NavPoint n = _ncx.AddNavPoint("Chapter1", "html1", "chapter1.xhtml", 1);
-            n.Add("Part 1", "html2", "chapter1.xhtml#part1", 2);
 
-            var packageElement = new XElement("package");
-            
-            packageElement.Add(_metadata.ToElement());
-            packageElement.Add(_manifest.ToElement());
-            packageElement.Add(_spine.ToElement());
-            packageElement.Add(_guide.ToElement());
-
-            Debug.WriteLine(packageElement.ToString());
-            Debug.WriteLine("----");
-            Debug.WriteLine(_ncx.ToXml());
+            WriteOpf("content.opf");
+            WriteNcx("toc.ncx");
         }
 
         private string AddEntry(string path, string type)
@@ -239,6 +232,32 @@ namespace Epub
         {
             WriteFile(epubPath, content);
             return AddEntry(epubPath, mediaType);
+        }
+
+        private void WriteOpf(string opfFilePath)
+        {
+            string fullPath = Path.Combine(GetOpfDirectory(), opfFilePath);
+
+            var packageElement = new XElement("package", new XAttribute("version", "2.0"), new XAttribute("unique-identifier", "BookId"));
+
+            packageElement.Add(_metadata.ToElement());
+            packageElement.Add(_manifest.ToElement());
+            packageElement.Add(_spine.ToElement());
+            packageElement.Add(_guide.ToElement());
+
+            File.WriteAllText(fullPath, packageElement.ToString(), Encoding.UTF8);
+        }
+
+        private void WriteNcx(string ncxFilePath)
+        {
+            string fullPath = Path.Combine(GetOpfDirectory(), ncxFilePath);
+            string ncx = _ncx.ToXml();
+            File.WriteAllText(fullPath, ncx, Encoding.UTF8);
+        }
+
+        public NavPoint AddNavPoint(string label, string id, string content, int playOrder)
+        {
+            return _ncx.AddNavPoint(label, id, content, playOrder);
         }
     }
 }
