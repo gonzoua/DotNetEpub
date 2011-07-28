@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
+
 namespace Epub
 {
     class Container
@@ -15,6 +16,7 @@ namespace Epub
         }
 
         private List<RootFile> _rootFiles;
+
         public Container()
         {
             _rootFiles = new List<RootFile>();
@@ -32,11 +34,13 @@ namespace Epub
         public XElement ToElement()
         {
             XNamespace ns = "urn:oasis:names:tc:opendocument:xmlns:container";
-            XElement element = new XElement(ns + "container", new XAttribute("version", "2.0"));
-            XElement filesElement = new XElement("rootfiles");
+            XElement element = new XElement(ns + "container",
+                new XAttribute("version", "2.0"));
+
+            XElement filesElement = new XElement(ns + "rootfiles");
             foreach (RootFile r in _rootFiles)
             {
-                XElement fileElement = new XElement("rootfile",
+                XElement fileElement = new XElement(ns + "rootfile",
                     new XAttribute("full-path", r.file),
                     new XAttribute("media-type", r.mediaType));
                 filesElement.Add(fileElement);
@@ -45,6 +49,5 @@ namespace Epub
 
             return element;
         }
-
     }
 }
