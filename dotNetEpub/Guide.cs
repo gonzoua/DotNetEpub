@@ -12,7 +12,7 @@ namespace Epub
 
         public Guide()
         {
-            _element = new XElement("guide");
+            _element = new XElement(Document.OpfNS + "guide");
         }
 
         public void AddReference(string href, string type)
@@ -22,7 +22,7 @@ namespace Epub
 
         public void AddReference(string href, string type, string title)
         {
-            var itemref = new XElement("reference", 
+            var itemref = new XElement(Document.OpfNS + "reference",
                 new XAttribute("type", type), new XAttribute("title", title));
             if (!String.IsNullOrEmpty(title))
                 itemref.SetAttributeValue("title", title);

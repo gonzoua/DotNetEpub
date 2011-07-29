@@ -35,7 +35,7 @@ namespace Epub
             XNamespace dc = "http://purl.org/dc/elements/1.1/";
             XNamespace opf = "http://www.idpf.org/2007/opf";
 
-            var element = new XElement("metadata",
+            var element = new XElement(Document.OpfNS + "metadata",
                 new XAttribute(XNamespace.Xmlns + "dc", dc),
                 new XAttribute(XNamespace.Xmlns + "opf", opf));
 
