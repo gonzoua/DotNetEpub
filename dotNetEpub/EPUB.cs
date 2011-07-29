@@ -302,13 +302,13 @@ namespace Epub
 
         public string AddStylesheetData(string epubPath, string content)
         {
-            WriteFile(content, epubPath);
+            WriteFile(epubPath, content);
             return AddStylesheetEntry(epubPath);
         }
 
         public string AddXhtmlData(string epubPath, string content)
         {
-            WriteFile(content, epubPath);
+            WriteFile(epubPath, content);
             return AddXhtmlEntry(epubPath);
         }
 
