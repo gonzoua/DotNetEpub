@@ -41,7 +41,7 @@ namespace Epub
             // setup mandatory TOC file
             _manifest.AddItem("ncx", "toc.ncx", "application/x-dtbncx+xml");
             _spine.SetToc("ncx");
-            _container.AddRootFile("OPF/toc.ncx", "application/oebps-package+xml");
+            _container.AddRootFile("OPF/content.opf", "application/oebps-package+xml");
             _ncx.SetUid("foo");
         }
 
