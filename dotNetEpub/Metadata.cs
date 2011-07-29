@@ -67,14 +67,14 @@ namespace Epub
         public void AddCreator(string name, string role)
         {
             DCItem dcitem = new DCItem("creator", name);
-            dcitem.SetAttribute("role", role);
+            dcitem.SetOpfAttribute("role", role);
             _dcItems.Add(dcitem);
         }
 
         public void AddCcontributor(string name, string role)
         {
             DCItem dcitem = new DCItem("contributor", name);
-            dcitem.SetAttribute("role", role);
+            dcitem.SetOpfAttribute("role", role);
             _dcItems.Add(dcitem);
         }
 
@@ -94,7 +94,7 @@ namespace Epub
             DCItem dcitem = new DCItem("identifier", uuid);
             dcitem.SetAttribute("id", id);
             if (!String.IsNullOrEmpty(scheme))
-                dcitem.SetAttribute("scheme", scheme);
+                dcitem.SetOpfAttribute("scheme", scheme);
             _dcItems.Add(dcitem);
         }
 
