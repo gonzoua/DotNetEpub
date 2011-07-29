@@ -40,11 +40,11 @@ namespace Epub
 
         public XElement ToElement()
         {
-            XElement e = new XElement("navPoint", new XAttribute("id", _id), new XAttribute("playOrder", _playOrder));
+            XElement e = new XElement(NCX.NcxNS + "navPoint", new XAttribute("id", _id), new XAttribute("playOrder", _playOrder));
             if (!String.IsNullOrEmpty(_class))
                 e.Add(new XAttribute("class", _class));
-            e.Add(new XElement("navLabel", new XElement("text", _label)));
-            e.Add(new XElement("content", new XAttribute("src", _content)));
+            e.Add(new XElement(NCX.NcxNS + "navLabel", new XElement(NCX.NcxNS + "text", _label)));
+            e.Add(new XElement(NCX.NcxNS + "content", new XAttribute("src", _content)));
             foreach (NavPoint n in _navpoints)
             {
                 e.Add(n.ToElement());

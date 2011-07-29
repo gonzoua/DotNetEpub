@@ -12,7 +12,7 @@ namespace Epub
         private List<String> _authors;
         private string _uid;
         private List<NavPoint> _navpoints;
-        private XNamespace NcxNS = "http://www.daisy.org/z3986/2005/ncx/";
+        public static XNamespace NcxNS = "http://www.daisy.org/z3986/2005/ncx/";
 
         public NCX()
         {
