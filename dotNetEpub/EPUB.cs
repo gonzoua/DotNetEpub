@@ -177,6 +177,7 @@ namespace Epub
 
             using (ZipFile zip = new ZipFile())
             {
+                zip.EmitTimesInWindowsFormatWhenSaving = false;
                 var entry = zip.AddEntry("mimetype", "application/epub+zip", Encoding.ASCII);
                 entry.CompressionLevel = Ionic.Zlib.CompressionLevel.None;
                 zip.AddDirectory(GetTempDirectory());
