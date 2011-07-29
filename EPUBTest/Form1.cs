@@ -23,6 +23,7 @@ namespace EPUBTest
             var epub = new EPubDocument();
             epub.AddAuthor("Jack London");
             epub.AddTitle("White Fang");
+            epub.AddLanguage("en");
             epub.AddStylesheetFile("style.css", "style.css");
             string id1 = epub.AddXhtmlFile("page0001.xhtml", "page0001.xhtml");
             string id2 = epub.AddXhtmlFile("page0002.xhtml", "page0002.xhtml");
