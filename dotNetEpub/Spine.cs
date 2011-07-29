@@ -39,7 +39,7 @@ namespace Epub
         public XElement ToElement()
         {
             XElement element = new XElement(Document.OpfNS + "spine");
-            if (String.IsNullOrEmpty(_toc))
+            if (!String.IsNullOrEmpty(_toc))
                 element.Add(new XAttribute("toc", _toc));
             foreach (ItemRef r in _itemRefs)
             {
