@@ -42,7 +42,10 @@ namespace Epub
             _manifest.AddItem("ncx", "toc.ncx", "application/x-dtbncx+xml");
             _spine.SetToc("ncx");
             _container.AddRootFile("OPF/content.opf", "application/oebps-package+xml");
-            _ncx.SetUid("foo");
+            Guid guid = Guid.NewGuid();
+            string uuid = "urn:uuid:" + guid.ToString();
+            _ncx.SetUid(uuid);
+            _metadata.AddBookIdentifier("BookId", uuid);
         }
 
         ~Document()
@@ -114,6 +117,56 @@ namespace Epub
         {
             _metadata.AddTitle(title);
             _ncx.AddTitle(title);
+        }
+
+        public void AddTranslator(string name)
+        {
+            _metadata.AddTranslator(name);
+        }
+
+        public void AddSubject(string subj)
+        {
+            _metadata.AddSubject(subj);
+        }
+
+        public void AddDescription(string description)
+        {
+            _metadata.AddDescription(description);
+        }
+
+        public void AddType(string @type)
+        {
+            _metadata.AddType(@type);
+        }
+
+        public void AddFormat(string format)
+        {
+            _metadata.AddFormat(format);
+        }
+
+        public void AddLanguage(string lang)
+        {
+            _metadata.AddLanguage(lang);
+        }
+
+        public void AddRelation(string relation)
+        {
+            _metadata.AddRelation(relation);
+        }
+
+        public void AddRights(string rights)
+        {
+            _metadata.AddRights(rights);
+        }
+
+        public void AddBookIdentifier(string id)
+        {
+            AddBookIdentifier(id, string.Empty);
+        }
+
+        public void AddBookIdentifier(string id, string scheme)
+        {
+            _metadata.AddBookIdentifier(GetNextId("id"), id, scheme);
         }
 
         public void Generate(string epubFile)

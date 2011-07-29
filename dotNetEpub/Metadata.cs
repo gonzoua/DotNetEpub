@@ -12,9 +12,56 @@ namespace Epub
         private List<DCItem> _dcItems = new List<DCItem>();
         private List<Item> _items = new List<Item>();
         
-        public void AddAuthor(string author)
+        public void AddAuthor(string name)
         {
-            AddCreator(author, "aut");
+            AddCreator(name, "aut");
+        }
+
+        public void AddTranslator(string name)
+        {
+            AddCreator(name, "trl");
+        }
+
+        public void AddSubject(string subj)
+        {
+            DCItem dcitem = new DCItem("subject", subj);
+            _dcItems.Add(dcitem);
+        }
+
+        public void AddDescription(string description)
+        {
+            DCItem dcitem = new DCItem("description", description);
+            _dcItems.Add(dcitem);
+        }
+
+        public void AddType(string @type)
+        {
+            DCItem dcitem = new DCItem("type", @type);
+            _dcItems.Add(dcitem);
+        }
+
+        public void AddFormat(string format)
+        {
+            DCItem dcitem = new DCItem("format", format);
+            _dcItems.Add(dcitem);
+        }
+
+        public void AddLanguage(string lang)
+        {
+            DCItem dcitem = new DCItem("language", lang);
+            _dcItems.Add(dcitem);
+        }
+
+        public void AddRelation(string relation)
+        {
+            DCItem dcitem = new DCItem("relation", relation);
+            _dcItems.Add(dcitem);
+        }
+
+        public void AddRights(string rights)
+        {
+            DCItem dcitem = new DCItem("rights", rights);
+            _dcItems.Add(dcitem);
         }
 
         public void AddCreator(string name, string role)
@@ -24,9 +71,30 @@ namespace Epub
             _dcItems.Add(dcitem);
         }
 
+        public void AddCcontributor(string name, string role)
+        {
+            DCItem dcitem = new DCItem("contributor", name);
+            dcitem.SetAttribute("role", role);
+            _dcItems.Add(dcitem);
+        }
+
         public void AddTitle(string title)
         {
             DCItem dcitem = new DCItem("title", title);
+            _dcItems.Add(dcitem);
+        }
+
+        public void AddBookIdentifier(string id, string uuid)
+        {
+            AddBookIdentifier(id, uuid, string.Empty);
+        }
+
+        public void AddBookIdentifier(string id, string uuid, string scheme)
+        {
+            DCItem dcitem = new DCItem("identifier", uuid);
+            dcitem.SetAttribute("id", id);
+            if (!String.IsNullOrEmpty(scheme))
+                dcitem.SetAttribute("scheme", scheme);
             _dcItems.Add(dcitem);
         }
 
@@ -52,5 +120,7 @@ namespace Epub
 
             return element;
         }
+
+
     }
 }
