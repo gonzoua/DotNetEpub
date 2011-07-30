@@ -283,8 +283,14 @@ namespace Epub
 
         public string AddXhtmlFile(string path, string epubPath)
         {
+ 
+            return AddXhtmlFile(path, epubPath, false);
+        }
+
+        public string AddXhtmlFile(string path, string epubPath, bool linear)
+        {
             CopyFile(path, epubPath);
-            return AddXhtmlEntry(epubPath);
+            return AddXhtmlEntry(epubPath, linear);
         }
 
         public string AddFile(string path, string epubPath, string mediaType)
@@ -306,10 +312,15 @@ namespace Epub
             return AddStylesheetEntry(epubPath);
         }
 
-        public string AddXhtmlData(string epubPath, string content)
+        public string AddXhtmlData(string epubPath, string content, bool linear)
         {
             WriteFile(epubPath, content);
-            return AddXhtmlEntry(epubPath);
+            return AddXhtmlEntry(epubPath, linear);
+        }
+
+        public string AddXhtmlData(string epubPath, string content)
+        {
+            return AddXhtmlData(epubPath, content, false);
         }
 
         public string AddData(string epubPath, byte[] content, string mediaType)
@@ -346,8 +357,9 @@ namespace Epub
             e.Save(fullPath);
         }
 
-        public NavPoint AddNavPoint(string label, string id, string content, int playOrder)
+        public NavPoint AddNavPoint(string label, string content, int playOrder)
         {
+            String id = GetNextId("navid");
             return _ncx.AddNavPoint(label, id, content, playOrder);
         }
     }

@@ -22,6 +22,7 @@ namespace Epub
             _content = content;
             _playOrder = playOrder;
             _class = @class;
+
             _navpoints = new List<NavPoint>();
         }
 
@@ -31,8 +32,10 @@ namespace Epub
 
         }
 
-        public NavPoint Add(string label, string id, string content, int playOrder)
+        public NavPoint Add(string label, string content, int playOrder)
         {
+            string id = _id + "x" + (_navpoints.Count + 1).ToString();
+ 
             NavPoint n = new NavPoint(label, id, content, playOrder);
             _navpoints.Add(n);
             return n;
