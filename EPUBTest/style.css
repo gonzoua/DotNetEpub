@@ -1,0 +1,17 @@
+body {
+    margin-right: 8pt;
+    
+}
+
+
+a.note {
+    vertical-align: super;
+    line-height: 0.1;
+    font-size: 0.7em;
+}
+
+p {
+    margin: 0px;
+    text-indent: 1.5em;
+    text-align: justify;
+}

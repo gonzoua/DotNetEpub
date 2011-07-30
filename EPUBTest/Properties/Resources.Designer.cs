@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EPUBTest.Properties
-{
-
-
+namespace EPUBTest.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,49 +22,104 @@ namespace EPUBTest.Properties
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EPUBTest.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        internal static System.Drawing.Bitmap gifSample {
+            get {
+                object obj = ResourceManager.GetObject("gifSample", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap jpegSample {
+            get {
+                object obj = ResourceManager.GetObject("jpegSample", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam leo ac sem ultricies tempus. In placerat semper ultrices. In sed laoreet augue. Donec a sem ac magna dapibus lacinia sit amet vitae leo. Vestibulum nec dolor eros, non volutpat dolor. Ut lobortis tincidunt lorem ac lobortis. Phasellus velit velit, varius in cursus eget, ornare at elit. Nulla tristique erat id ligula pulvinar dictum. Aliquam erat volutpat. Proin lectus augue, tempor nec placerat non, aliquam in lectus. Sed pellentesque  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string lorem {
+            get {
+                return ResourceManager.GetString("lorem", resourceCulture);
+            }
+        }
+        
+        internal static byte[] page {
+            get {
+                object obj = ResourceManager.GetObject("page", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap pngSample {
+            get {
+                object obj = ResourceManager.GetObject("pngSample", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to body {
+        ///    margin-right: 8pt;
+        ///    
+        ///}
+        ///
+        ///
+        ///a.note {
+        ///    vertical-align: super;
+        ///    line-height: 0.1;
+        ///    font-size: 0.7em;
+        ///}
+        ///
+        ///p {
+        ///    margin: 0px;
+        ///    text-indent: 1.5em;
+        ///    text-align: justify;
+        ///}
+        ///.
+        /// </summary>
+        internal static string style {
+            get {
+                return ResourceManager.GetString("style", resourceCulture);
             }
         }
     }
