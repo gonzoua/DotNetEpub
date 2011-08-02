@@ -61,7 +61,6 @@ namespace Epub
                 _tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
                 Directory.CreateDirectory(_tempDirectory);
             }
-            _tempDirectory = "C:\\EPUB\\test.epub";
 
             return _tempDirectory;
         }
