@@ -50,7 +50,7 @@ namespace Epub
 
         ~Document()
         {
-            if (!String.IsNullOrEmpty(_tempDirectory))
+            if (!String.IsNullOrEmpty(_tempDirectory) && Directory.Exists(_tempDirectory))
                 Directory.Delete(_tempDirectory, true);
         }
 
