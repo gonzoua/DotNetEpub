@@ -51,7 +51,7 @@ namespace EPUBTest
             epub.AddNavPoint("Lorem ipsum", pageName, navCounter++);
             pageCounter++;
             pageName = String.Format("page{0}.xhtml", pageCounter);
-            if (checkBoxGif.Checked || checkBoxPng.Checked || checkBoxJpeg.Checked)
+            if (checkBoxGif.Checked || checkBoxPng.Checked || checkBoxJpeg.Checked || checkBoxSvg.Checked)
             {
 
                 var navImageTests = epub.AddNavPoint("Image tests", pageName, navCounter);
@@ -94,6 +94,18 @@ namespace EPUBTest
                     pageCounter++;
                     pageName = String.Format("page{0}.xhtml", pageCounter);
                 }
+
+                if (checkBoxSvg.Checked)
+                {
+                    byte[] svg = EPUBTest.Properties.Resources.svgSample;
+
+                    epub.AddImageData("sample.svg", svg);
+                    page = page_template.Replace("%%CONTENT%%", "<img width=\"500\" height=\"500\" src=\"sample.svg\" alt=\"\"/>");
+                    epub.AddXhtmlData(pageName, page);
+                    navImageTests.Add("SVG Test", pageName, navCounter++);
+                    pageCounter++;
+                    pageName = String.Format("page{0}.xhtml", pageCounter);
+                }
             }
 
             page = page_template.Replace("%%CONTENT%%", richtextSampleContent.Text);
@@ -110,7 +122,7 @@ namespace EPUBTest
 
 
             saveFileDialog.Filter = "epub files (*.epub)|*.epub|All files (*.*)|*.*";
-            saveFileDialog.FilterIndex = 2;
+            saveFileDialog.FilterIndex = 1;
             saveFileDialog.RestoreDirectory = true;
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)

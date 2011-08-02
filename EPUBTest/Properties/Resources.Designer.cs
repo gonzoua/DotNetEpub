@@ -122,5 +122,12 @@ namespace EPUBTest.Properties {
                 return ResourceManager.GetString("style", resourceCulture);
             }
         }
+        
+        internal static byte[] svgSample {
+            get {
+                object obj = ResourceManager.GetObject("svgSample", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
