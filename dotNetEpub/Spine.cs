@@ -18,17 +18,17 @@ namespace Epub
         private string _toc;
         private List<ItemRef> _itemRefs;
 
-        public Spine()
+        internal Spine()
         {
             _itemRefs = new List<ItemRef>();
         }
 
-        public void SetToc(string toc)
+        internal void SetToc(string toc)
         {
             _toc = toc;
         }
 
-        public void AddItemRef(string id, bool linear)
+        internal void AddItemRef(string id, bool linear)
         {
             ItemRef r;
             r.id = id;
@@ -36,7 +36,7 @@ namespace Epub
             _itemRefs.Add(r);
         }
 
-        public XElement ToElement()
+        internal XElement ToElement()
         {
             XElement element = new XElement(Document.OpfNS + "spine");
             if (!String.IsNullOrEmpty(_toc))

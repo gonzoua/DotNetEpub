@@ -11,13 +11,13 @@ namespace Epub
         private string _name;
         private string _value;
 
-        public Item(string name, string value)
+        internal Item(string name, string value)
         {
             _name = name;
             _value = value;
         }
 
-        public XElement ToElement()
+        internal XElement ToElement()
         {
             var element = new XElement("meta");
             element.SetAttributeValue("name", _name);

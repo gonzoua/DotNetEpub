@@ -12,31 +12,31 @@ namespace Epub
         private List<String> _authors;
         private string _uid;
         private List<NavPoint> _navpoints;
-        public static XNamespace NcxNS = "http://www.daisy.org/z3986/2005/ncx/";
+        internal static XNamespace NcxNS = "http://www.daisy.org/z3986/2005/ncx/";
 
-        public NCX()
+        internal NCX()
         {
             _navpoints = new List<NavPoint>();
             _authors = new List<string>();
             _title = String.Empty;
         }
 
-        public void SetUid(string uid)
+        internal void SetUid(string uid)
         {
             _uid = uid;
         }
 
-        public void AddAuthor(string author)
+        internal void AddAuthor(string author)
         {
             _authors.Add(author);
         }
 
-        public void AddTitle(string title)
+        internal void AddTitle(string title)
         {
             _title += " " + title;
         }
 
-        public void SetTitle(string title)
+        internal void SetTitle(string title)
         {
             if (title == null)
                 _title = String.Empty;
@@ -44,7 +44,7 @@ namespace Epub
                 _title = title;
         }
 
-        public XDocument ToXmlDocument()
+        internal XDocument ToXmlDocument()
         {
             XDocument topDoc = new XDocument(
                 new XDocumentType("ncx", "-//NISO//DTD ncx 2005-1//EN",
@@ -72,7 +72,7 @@ namespace Epub
             return topDoc;
         }
 
-        public NavPoint AddNavPoint(string label, string id, string content, int playOrder)
+        internal NavPoint AddNavPoint(string label, string id, string content, int playOrder)
         {
             NavPoint n = new NavPoint(label, id, content, playOrder);
             _navpoints.Add(n);

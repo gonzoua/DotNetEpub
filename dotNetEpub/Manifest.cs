@@ -9,12 +9,12 @@ namespace Epub
     class Manifest
     {
         XElement _element;
-        public Manifest()
+        internal Manifest()
         {
             _element = new XElement(Document.OpfNS + "manifest");
         }
 
-        public void AddItem(string id, string href, string type)
+        internal void AddItem(string id, string href, string type)
         {
             XElement item = new XElement(Document.OpfNS + "item");
             item.SetAttributeValue("id", id);
@@ -24,7 +24,7 @@ namespace Epub
         }
 
 
-        public XElement ToElement()
+        internal XElement ToElement()
         {
             return _element;
         }

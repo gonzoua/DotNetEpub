@@ -17,12 +17,12 @@ namespace Epub
 
         private List<RootFile> _rootFiles;
 
-        public Container()
+        internal Container()
         {
             _rootFiles = new List<RootFile>();
         }
 
-        public void AddRootFile(string file, string mediaType)
+        internal void AddRootFile(string file, string mediaType)
         {
             RootFile r;
             r.file = file;
@@ -31,7 +31,7 @@ namespace Epub
             _rootFiles.Add(r);
         }
 
-        public XElement ToElement()
+        internal XElement ToElement()
         {
             XNamespace ns = "urn:oasis:names:tc:opendocument:xmlns:container";
             XElement element = new XElement(ns + "container",

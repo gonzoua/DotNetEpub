@@ -14,7 +14,7 @@ namespace Epub
         private IDictionary<string, string> _attributes;
         private IDictionary<string, string> _opfAttributes;
 
-        public DCItem(string name, string value)
+        internal DCItem(string name, string value)
         {
             _name = name;
             _value = value;
@@ -23,17 +23,17 @@ namespace Epub
 
         }
 
-        public void SetAttribute(string name, string value)
+        internal void SetAttribute(string name, string value)
         {
             _attributes.Add(name, value);
         }
 
-        public void SetOpfAttribute(string name, string value)
+        internal void SetOpfAttribute(string name, string value)
         {
             _opfAttributes.Add(name, value);
         }
 
-        public XElement ToElement()
+        internal XElement ToElement()
         {
             XElement element = new XElement(Document.DcNS + _name, _value);
             foreach (string key in _opfAttributes.Keys)
