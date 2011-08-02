@@ -106,8 +106,17 @@ namespace EPUBTest
             page = page_template.Replace("%%CONTENT%%", "<h1>Notes</h1><a id=\"n1\">1</a> Just note sample");
 
             epub.AddXhtmlData("notes.xhtml", page);
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
 
-            epub.Generate("C:\\EPUB\\x.epub");
+
+            saveFileDialog.Filter = "epub files (*.epub)|*.epub|All files (*.*)|*.*";
+            saveFileDialog.FilterIndex = 2;
+            saveFileDialog.RestoreDirectory = true;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                epub.Generate(saveFileDialog.FileName);
+            }
         }
     }
 }
