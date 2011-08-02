@@ -67,6 +67,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="LiberationSerif-Bold.ttf" />
+    <None Include="LiberationSerif-BoldItalic.ttf" />
+    <None Include="LiberationSerif-Italic.ttf" />
+    <None Include="LiberationSerif-Regular.ttf" />
     <None Include="page.xhtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

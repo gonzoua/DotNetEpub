@@ -74,6 +74,34 @@ namespace EPUBTest.Properties {
             }
         }
         
+        internal static byte[] LiberationSerif_Bold {
+            get {
+                object obj = ResourceManager.GetObject("LiberationSerif_Bold", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] LiberationSerif_BoldItalic {
+            get {
+                object obj = ResourceManager.GetObject("LiberationSerif_BoldItalic", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] LiberationSerif_Italic {
+            get {
+                object obj = ResourceManager.GetObject("LiberationSerif_Italic", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] LiberationSerif_Regular {
+            get {
+                object obj = ResourceManager.GetObject("LiberationSerif_Regular", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam leo ac sem ultricies tempus. In placerat semper ultrices. In sed laoreet augue. Donec a sem ac magna dapibus lacinia sit amet vitae leo. Vestibulum nec dolor eros, non volutpat dolor. Ut lobortis tincidunt lorem ac lobortis. Phasellus velit velit, varius in cursus eget, ornare at elit. Nulla tristique erat id ligula pulvinar dictum. Aliquam erat volutpat. Proin lectus augue, tempor nec placerat non, aliquam in lectus. Sed pellentesque  [rest of string was truncated]&quot;;.
         /// </summary>
@@ -115,7 +143,19 @@ namespace EPUBTest.Properties {
         ///    text-indent: 1.5em;
         ///    text-align: justify;
         ///}
-        ///.
+        ///
+        ///p.bold {
+        ///	font-weight: bold;
+        ///}
+        ///
+        ///p.italic {
+        ///	font-style: italic;
+        ///}
+        ///
+        ///p.bolditalic {
+        ///	font-weight: bold;
+        ///	font-style: italic;
+        ///}.
         /// </summary>
         internal static string style {
             get {

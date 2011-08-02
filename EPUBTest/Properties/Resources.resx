@@ -124,6 +124,18 @@
   <data name="jpegSample" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\jpegSample.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="LiberationSerif_Bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\LiberationSerif-Bold.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LiberationSerif_BoldItalic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\LiberationSerif-BoldItalic.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LiberationSerif_Italic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\LiberationSerif-Italic.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LiberationSerif_Regular" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\LiberationSerif-Regular.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="lorem" xml:space="preserve">
     <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam leo ac sem ultricies tempus. In placerat semper ultrices. In sed laoreet augue. Donec a sem ac magna dapibus lacinia sit amet vitae leo. Vestibulum nec dolor eros, non volutpat dolor. Ut lobortis tincidunt lorem ac lobortis. Phasellus velit velit, varius in cursus eget, ornare at elit. Nulla tristique erat id ligula pulvinar dictum. Aliquam erat volutpat. Proin lectus augue, tempor nec placerat non, aliquam in lectus. Sed pellentesque ligula et arcu ornare ornare. Curabitur accumsan, magna ut ullamcorper molestie, purus arcu consequat enim, ut consectetur purus mauris id risus. In hac habitasse platea dictumst. Donec nec velit enim. Ut vel enim turpis. Praesent hendrerit, dolor vitae euismod aliquet, felis eros blandit risus, at condimentum eros diam eu justo.</value>
   </data>
