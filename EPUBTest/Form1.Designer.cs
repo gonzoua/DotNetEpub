@@ -96,6 +96,8 @@
             // checkBoxJpeg
             // 
             this.checkBoxJpeg.AutoSize = true;
+            this.checkBoxJpeg.Checked = true;
+            this.checkBoxJpeg.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxJpeg.Location = new System.Drawing.Point(18, 78);
             this.checkBoxJpeg.Name = "checkBoxJpeg";
             this.checkBoxJpeg.Size = new System.Drawing.Size(122, 17);
@@ -106,6 +108,8 @@
             // checkBoxPng
             // 
             this.checkBoxPng.AutoSize = true;
+            this.checkBoxPng.Checked = true;
+            this.checkBoxPng.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxPng.Location = new System.Drawing.Point(18, 101);
             this.checkBoxPng.Name = "checkBoxPng";
             this.checkBoxPng.Size = new System.Drawing.Size(118, 17);
@@ -116,6 +120,8 @@
             // checkBoxGif
             // 
             this.checkBoxGif.AutoSize = true;
+            this.checkBoxGif.Checked = true;
+            this.checkBoxGif.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxGif.Location = new System.Drawing.Point(18, 124);
             this.checkBoxGif.Name = "checkBoxGif";
             this.checkBoxGif.Size = new System.Drawing.Size(112, 17);
@@ -136,6 +142,8 @@
             // checkBoxSvg
             // 
             this.checkBoxSvg.AutoSize = true;
+            this.checkBoxSvg.Checked = true;
+            this.checkBoxSvg.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxSvg.Location = new System.Drawing.Point(18, 147);
             this.checkBoxSvg.Name = "checkBoxSvg";
             this.checkBoxSvg.Size = new System.Drawing.Size(117, 17);
