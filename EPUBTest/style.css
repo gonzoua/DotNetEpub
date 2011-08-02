@@ -15,3 +15,16 @@ p {
     text-indent: 1.5em;
     text-align: justify;
 }
+
+p.bold {
+	font-weight: bold;
+}
+
+p.italic {
+	font-style: italic;
+}
+
+p.bolditalic {
+	font-weight: bold;
+	font-style: italic;
+}

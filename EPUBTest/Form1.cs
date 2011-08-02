@@ -41,8 +41,19 @@ namespace EPUBTest
 
             string content = "<h1>Header 1</h1>";
             content += "<h2>Header 2</h2>";
-            content += "<h3>Header 2</h3>";
+            content += "<h3>Header 3</h3>";
+            content += "<h4>Regular paragraph</h4>";
             content += "<p>" + EPUBTest.Properties.Resources.lorem + "<a href=\"notes.xhtml#n1\">[1]</a></p>";
+
+            content += "<h4>Bold paragraph</h4>";
+            content += "<p class=\"bold\">" + EPUBTest.Properties.Resources.lorem + "</p>";
+
+            content += "<h4>Italic paragraph</h4>";
+            content += "<p class=\"italic\">" + EPUBTest.Properties.Resources.lorem + "</p>";
+
+            content += "<h4>Bold+Italic paragraph</h4>";
+            content += "<p class=\"bolditalic\">" + EPUBTest.Properties.Resources.lorem + "</p>";
+
             String page = page_template.Replace("%%CONTENT%%", content);
 
             String pageName = String.Format("page{0}.xhtml", pageCounter);
