@@ -10,6 +10,9 @@ using Ionic.Zip;
 
 namespace Epub
 {
+    /// <summary>
+    /// Main class that represents epub file
+    /// </summary>
     public class Document
     {
         static public XNamespace OpfNS = "http://www.idpf.org/2007/opf";
@@ -105,29 +108,44 @@ namespace Epub
 
             return id;
         }
-
+        /// <summary>
+        /// Add author to epub document
+        /// </summary>
+        /// <param name="author">Human-readable full name</param>
         public void AddAuthor(string author)
         {
             _metadata.AddAuthor(author);
             _ncx.AddAuthor(author);
         }
-
+        /// <summary>
+        /// Add title to epub document
+        /// </summary>
+        /// <param name="title">document's title</param>
         public void AddTitle(string title)
         {
             _metadata.AddTitle(title);
             _ncx.AddTitle(title);
         }
-
+        /// <summary>
+        /// Add document translator
+        /// </summary>
+        /// <param name="name">Human-readable full name</param>
         public void AddTranslator(string name)
         {
             _metadata.AddTranslator(name);
         }
-
+        /// <summary>
+        /// Add subject
+        /// </summary>
+        /// <param name="subj">Document's subject</param>
         public void AddSubject(string subj)
         {
             _metadata.AddSubject(subj);
         }
-
+        /// <summary>
+        /// Add document's description 
+        /// </summary>
+        /// <param name="description">Document description</param>
         public void AddDescription(string description)
         {
             _metadata.AddDescription(description);
@@ -142,7 +160,10 @@ namespace Epub
         {
             _metadata.AddFormat(format);
         }
-
+        /// <summary>
+        /// Add language used in document
+        /// </summary>
+        /// <param name="lang">two-letter language code e.g. "en", "es", "it"</param>
         public void AddLanguage(string lang)
         {
             _metadata.AddLanguage(lang);
