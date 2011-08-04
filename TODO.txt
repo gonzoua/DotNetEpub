@@ -1,3 +1,5 @@
 - Add enum for creator roles
 - Add Author type with file-as parameter
 - Add public method for adding creators with roles
+- Convert Primary/Auxiliary types from bool to enum
+? Make internal playOrder counter

@@ -91,7 +91,7 @@ namespace EPUBTest
                     epub.AddImageData("sample.png", memImg.GetBuffer());
                     page = page_template.Replace("%%CONTENT%%", "<img src=\"sample.png\" alt=\"\"/>");
                     epub.AddXhtmlData(pageName, page);
-                    navImageTests.Add("PNG Test", pageName, navCounter++);
+                    navImageTests.AddNavPoint("PNG Test", pageName, navCounter++);
                     pageCounter++;
                     pageName = String.Format("page{0}.xhtml", pageCounter);
                 }
@@ -104,7 +104,7 @@ namespace EPUBTest
                     epub.AddImageData("sample.jpg", memImg.GetBuffer());
                     page = page_template.Replace("%%CONTENT%%", "<img src=\"sample.jpg\" alt=\"\"/>");
                     epub.AddXhtmlData(pageName, page);
-                    navImageTests.Add("JPEG Test", pageName, navCounter++);
+                    navImageTests.AddNavPoint("JPEG Test", pageName, navCounter++);
                     pageCounter++;
                     pageName = String.Format("page{0}.xhtml", pageCounter);
                 }
@@ -117,7 +117,7 @@ namespace EPUBTest
                     epub.AddImageData("sample.gif", memImg.GetBuffer());
                     page = page_template.Replace("%%CONTENT%%", "<img src=\"sample.gif\" alt=\"\"/>");
                     epub.AddXhtmlData(pageName, page);
-                    navImageTests.Add("GIF Test", pageName, navCounter++);
+                    navImageTests.AddNavPoint("GIF Test", pageName, navCounter++);
                     pageCounter++;
                     pageName = String.Format("page{0}.xhtml", pageCounter);
                 }
@@ -129,7 +129,7 @@ namespace EPUBTest
                     epub.AddImageData("sample.svg", svg);
                     page = page_template.Replace("%%CONTENT%%", "<img width=\"500\" height=\"500\" src=\"sample.svg\" alt=\"\"/>");
                     epub.AddXhtmlData(pageName, page);
-                    navImageTests.Add("SVG Test", pageName, navCounter++);
+                    navImageTests.AddNavPoint("SVG Test", pageName, navCounter++);
                     pageCounter++;
                     pageName = String.Format("page{0}.xhtml", pageCounter);
                 }

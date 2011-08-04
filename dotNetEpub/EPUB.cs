@@ -109,7 +109,7 @@ namespace Epub
             return id;
         }
         /// <summary>
-        /// Add author to epub document
+        /// Add author of the document
         /// </summary>
         /// <param name="author">Human-readable full name</param>
         public void AddAuthor(string author)
@@ -135,7 +135,7 @@ namespace Epub
             _metadata.AddTranslator(name);
         }
         /// <summary>
-        /// Add subject
+        /// Add document subject: phrase or list of keywords
         /// </summary>
         /// <param name="subj">Document's subject</param>
         public void AddSubject(string subj)
@@ -143,37 +143,50 @@ namespace Epub
             _metadata.AddSubject(subj);
         }
         /// <summary>
-        /// Add document's description 
+        /// Add description of document's content
         /// </summary>
         /// <param name="description">Document description</param>
         public void AddDescription(string description)
         {
             _metadata.AddDescription(description);
         }
-
+        /// <summary>
+        /// Add terms describing general categories, functions, genres, or aggregation levels for content. 
+        /// The advised best practice is to select a value from a controlled vocabulary.
+        /// </summary>
+        /// <param name="type">document type</param>
         public void AddType(string @type)
         {
             _metadata.AddType(@type);
         }
-
+        /// <summary>
+        /// Add media type or dimensions of the resource. Best practice is to use a value from a controlled vocabulary (e.g. MIME media types).
+        /// </summary>
+        /// <param name="format">document format</param>
         public void AddFormat(string format)
         {
             _metadata.AddFormat(format);
         }
         /// <summary>
-        /// Add language used in document
+        /// Add a language of the intellectual content of the Publication. 
         /// </summary>
-        /// <param name="lang">two-letter language code e.g. "en", "es", "it"</param>
+        /// <param name="lang">RFC3066-complient two-letter language code e.g. "en", "es", "it"</param>
         public void AddLanguage(string lang)
         {
             _metadata.AddLanguage(lang);
         }
-
+        /// <summary>
+        /// Add an identifier of an auxiliary resource and its relationship to the publication.
+        /// </summary>
+        /// <param name="relation">document relation</param>
         public void AddRelation(string relation)
         {
             _metadata.AddRelation(relation);
         }
-
+        /// <summary>
+        /// A statement about rights, or a reference to one.
+        /// </summary>
+        /// <param name="rights"></param>
         public void AddRights(string rights)
         {
             _metadata.AddRights(rights);
@@ -188,7 +201,10 @@ namespace Epub
         {
             _metadata.AddBookIdentifier(GetNextId("id"), id, scheme);
         }
-
+        /// <summary>
+        /// Generate document and save to specified filename
+        /// </summary>
+        /// <param name="epubFile">document's filename</param>
         public void Generate(string epubFile)
         {
             WriteOpf("content.opf");
@@ -288,31 +304,58 @@ namespace Epub
             File.WriteAllText(fullPath, content, Encoding.UTF8);
         }
 
-
+        /// <summary>
+        /// Add image to document's contents
+        /// </summary>
+        /// <param name="path">Path to source image file</param>
+        /// <param name="epubPath">Path to image file in EPUB</param>
+        /// <returns>id of newly created element</returns>
         public string AddImageFile(string path, string epubPath)
         {
             CopyFile(path, epubPath);
             return AddImageEntry(epubPath);
         }
-
+        /// <summary>
+        /// Add CSS file to document's contents
+        /// </summary>
+        /// <param name="path">path to source CSS file</param>
+        /// <param name="epubPath">path to destination file in EPUB</param>
+        /// <returns>id of newly created element</returns>
         public string AddStylesheetFile(string path, string epubPath)
         {
             CopyFile(path, epubPath);
             return AddStylesheetEntry(epubPath);
         }
-
+        /// <summary>
+        /// Add primary XHTML file to document's contents
+        /// </summary>
+        /// <param name="path">path to source file</param>
+        /// <param name="epubPath">path in EPUB</param>
+        /// <returns>id of newly created element</returns>
         public string AddXhtmlFile(string path, string epubPath)
         {
  
-            return AddXhtmlFile(path, epubPath, false);
+            return AddXhtmlFile(path, epubPath, true);
         }
-
-        public string AddXhtmlFile(string path, string epubPath, bool linear)
+        /// <summary>
+        /// Add primary or auxiliary (like notes) XHTML file to document's content
+        /// </summary>
+        /// <param name="path">path to source file</param>
+        /// <param name="epubPath">path in epub</param>
+        /// <param name="primary">true for primary document, false for auxiliary</param>
+        /// <returns>id of newly created element</returns>
+        public string AddXhtmlFile(string path, string epubPath, bool primary)
         {
             CopyFile(path, epubPath);
-            return AddXhtmlEntry(epubPath, linear);
+            return AddXhtmlEntry(epubPath, primary);
         }
-
+        /// <summary>
+        /// Add generic file to document's contents
+        /// </summary>
+        /// <param name="path">source file path</param>
+        /// <param name="epubPath">path in EPUB</param>
+        /// <param name="mediaType">MIME media-type, e.g. "application/octet-stream"</param>
+        /// <returns></returns>
         public string AddFile(string path, string epubPath, string mediaType)
         {
             CopyFile(path, epubPath);
@@ -320,29 +363,58 @@ namespace Epub
         }
 
         // Data versions of AddNNN functions
+        /// <summary>
+        /// Add image file to document with specified content. Image type 
+        /// is detected by filename's extension
+        /// </summary>
+        /// <param name="epubPath">path in EPUB</param>
+        /// <param name="content">file content</param>
+        /// <returns></returns>
         public string AddImageData(string epubPath, byte[] content)
         {
             WriteFile(epubPath, content);
             return AddImageEntry(epubPath);
         }
-
+        /// <summary>
+        /// Add CSS file to document with specified content.
+        /// </summary>
+        /// <param name="epubPath">path in EPUB</param>
+        /// <param name="content">file content</param>
+        /// <returns></returns>
         public string AddStylesheetData(string epubPath, string content)
         {
             WriteFile(epubPath, content);
             return AddStylesheetEntry(epubPath);
         }
-
-        public string AddXhtmlData(string epubPath, string content, bool linear)
+        /// <summary>
+        /// Add primary or auxiliary XHTML file to document with specified content.
+        /// </summary>
+        /// <param name="epubPath">path in EPUB</param>
+        /// <param name="content">file content</param>
+        /// <param name="primary">true if file is primary, false if auxiliary</param>
+        /// <returns></returns>
+        public string AddXhtmlData(string epubPath, string content, bool primary)
         {
             WriteFile(epubPath, content);
-            return AddXhtmlEntry(epubPath, linear);
+            return AddXhtmlEntry(epubPath, primary);
         }
-
+        /// <summary>
+        /// Add primary  XHTML file to document with specified content.
+        /// </summary>
+        /// <param name="epubPath">path in EPUB</param>
+        /// <param name="content">file contents</param>
+        /// <returns>identifier of added file</returns>
         public string AddXhtmlData(string epubPath, string content)
         {
-            return AddXhtmlData(epubPath, content, false);
+            return AddXhtmlData(epubPath, content, true);
         }
-
+        /// <summary>
+        /// Add generic file to document with specified content
+        /// </summary>
+        /// <param name="epubPath">path in EPUB</param>
+        /// <param name="content">file content</param>
+        /// <param name="mediaType">MIME media-type, e.g. "application/octet-stream"</param>
+        /// <returns>identifier of added file</returns>
         public string AddData(string epubPath, byte[] content, string mediaType)
         {
             WriteFile(epubPath, content);
@@ -376,7 +448,13 @@ namespace Epub
             XElement e = _container.ToElement();
             e.Save(fullPath);
         }
-
+        /// <summary>
+        /// Add navigation point to top-level Table of Contents. 
+        /// </summary>
+        /// <param name="label">Text of TOC entry</param>
+        /// <param name="content">Link to TOC entry</param>
+        /// <param name="playOrder">play order counter</param>
+        /// <returns>newly created NavPoint </returns>
         public NavPoint AddNavPoint(string label, string content, int playOrder)
         {
             String id = GetNextId("navid");

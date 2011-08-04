@@ -15,7 +15,7 @@ namespace Epub
         private int _playOrder;
         List<NavPoint> _navpoints;
 
-        public NavPoint(string label, string id, string content, int playOrder, string @class)
+        internal NavPoint(string label, string id, string content, int playOrder, string @class)
         {
             _label = label;
             _id = id;
@@ -26,13 +26,20 @@ namespace Epub
             _navpoints = new List<NavPoint>();
         }
 
-        public NavPoint(string label, string id, string content, int playOrder)
+        internal NavPoint(string label, string id, string content, int playOrder)
             : this(label, id, content, playOrder, String.Empty)
         {
 
         }
 
-        public NavPoint Add(string label, string content, int playOrder)
+        /// <summary>
+        /// Add TOC entry as a direct child of this NavPoint
+        /// </summary>
+        /// <param name="label">Text of TOC entry</param>
+        /// <param name="content">Link to TOC entry</param>
+        /// <param name="playOrder">play order counter</param>
+        /// <returns>newly created NavPoint </returns>
+        public NavPoint AddNavPoint(string label, string content, int playOrder)
         {
             string id = _id + "x" + (_navpoints.Count + 1).ToString();
  
@@ -41,7 +48,7 @@ namespace Epub
             return n;
         }
 
-        public XElement ToElement()
+        internal XElement ToElement()
         {
             XElement e = new XElement(NCX.NcxNS + "navPoint", new XAttribute("id", _id), new XAttribute("playOrder", _playOrder));
             if (!String.IsNullOrEmpty(_class))
