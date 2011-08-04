@@ -1,0 +1,3 @@
+- Add enum for creator roles
+- Add Author type with file-as parameter
+- Add public method for adding creators with roles
