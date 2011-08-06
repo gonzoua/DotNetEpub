@@ -15,8 +15,8 @@ namespace Epub
     /// </summary>
     public class Document
     {
-        static public XNamespace OpfNS = "http://www.idpf.org/2007/opf";
-        static public XNamespace DcNS = "http://purl.org/dc/elements/1.1/";
+        static internal XNamespace OpfNS = "http://www.idpf.org/2007/opf";
+        static internal XNamespace DcNS = "http://purl.org/dc/elements/1.1/";
 
         private Metadata _metadata;
         private Manifest _manifest;
