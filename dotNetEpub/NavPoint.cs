@@ -6,6 +6,9 @@ using System.Xml.Linq;
 
 namespace Epub
 {
+    /// <summary>
+    /// Class for TOC entry. Top-level navPoints should be created by Epub.Document.AddNavPoint method
+    /// </summary>
     public class NavPoint
     {
         private string _label;

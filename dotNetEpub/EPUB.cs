@@ -30,7 +30,9 @@ namespace Epub
         private string _tempDirectory;
         private string _opfDirectory;
         private string _metainfDirectory;
-
+        /// <summary>
+        /// Creates new document instance
+        /// </summary>
         public Document()
         {
             _metadata = new Metadata();
@@ -50,7 +52,9 @@ namespace Epub
             _ncx.SetUid(uuid);
             _metadata.AddBookIdentifier("BookId", uuid);
         }
-
+        /// <summary>
+        /// Destroys instance. Performs temporary directory clean-up if one has been created
+        /// </summary>
         ~Document()
         {
             if (!String.IsNullOrEmpty(_tempDirectory) && Directory.Exists(_tempDirectory))
@@ -184,19 +188,26 @@ namespace Epub
             _metadata.AddRelation(relation);
         }
         /// <summary>
-        /// A statement about rights, or a reference to one.
+        /// Add a statement about rights, or a reference to one.
         /// </summary>
-        /// <param name="rights"></param>
+        /// <param name="rights">A statement about rights, or a reference to one</param>
         public void AddRights(string rights)
         {
             _metadata.AddRights(rights);
         }
-
+        /// <summary>
+        /// Add book identifier
+        /// </summary>
+        /// <param name="id">A string or number used to uniquely identify the resource</param>
         public void AddBookIdentifier(string id)
         {
             AddBookIdentifier(id, string.Empty);
         }
-
+        /// <summary>
+        /// Add book identifier
+        /// </summary>
+        /// <param name="id">A string or number used to uniquely identify the resource</param>
+        /// <param name="scheme">System or authority that generated or assigned the id parameter, for example "ISBN" or "DOI." </param>
         public void AddBookIdentifier(string id, string scheme)
         {
             _metadata.AddBookIdentifier(GetNextId("id"), id, scheme);
@@ -355,7 +366,7 @@ namespace Epub
         /// <param name="path">source file path</param>
         /// <param name="epubPath">path in EPUB</param>
         /// <param name="mediaType">MIME media-type, e.g. "application/octet-stream"</param>
-        /// <returns></returns>
+        /// <returns>id of newly added file</returns>
         public string AddFile(string path, string epubPath, string mediaType)
         {
             CopyFile(path, epubPath);
@@ -369,7 +380,7 @@ namespace Epub
         /// </summary>
         /// <param name="epubPath">path in EPUB</param>
         /// <param name="content">file content</param>
-        /// <returns></returns>
+        /// <returns>id of newly added file</returns>
         public string AddImageData(string epubPath, byte[] content)
         {
             WriteFile(epubPath, content);
@@ -380,7 +391,7 @@ namespace Epub
         /// </summary>
         /// <param name="epubPath">path in EPUB</param>
         /// <param name="content">file content</param>
-        /// <returns></returns>
+        /// <returns>id of newly added file</returns>
         public string AddStylesheetData(string epubPath, string content)
         {
             WriteFile(epubPath, content);
@@ -392,7 +403,7 @@ namespace Epub
         /// <param name="epubPath">path in EPUB</param>
         /// <param name="content">file content</param>
         /// <param name="primary">true if file is primary, false if auxiliary</param>
-        /// <returns></returns>
+        /// <returns>identifier of added file</returns>
         public string AddXhtmlData(string epubPath, string content, bool primary)
         {
             WriteFile(epubPath, content);
