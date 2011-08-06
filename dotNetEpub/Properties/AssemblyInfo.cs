@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("dotNetEpub")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("DotNetEpub")]
+[assembly: AssemblyDescription("ePUB generation for .NET")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Bluezbox Software")]
-[assembly: AssemblyProduct("dotNetEpub")]
+[assembly: AssemblyProduct("DotNetEpub")]
 [assembly: AssemblyCopyright("Copyright © Bluezbox Software 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
