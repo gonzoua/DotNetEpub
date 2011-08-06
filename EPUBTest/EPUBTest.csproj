@@ -84,9 +84,9 @@
     <None Include="svgSample.svg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\dotNetEpub\dotNetEpub.csproj">
+    <ProjectReference Include="..\dotNetEpub\DotNetEpub.csproj">
       <Project>{382299DE-6C02-4587-864F-2218BD3A1935}</Project>
-      <Name>dotNetEpub</Name>
+      <Name>DotNetEpub</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
