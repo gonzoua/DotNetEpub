@@ -237,6 +237,16 @@ namespace Epub
             _metadata.AddBookIdentifier(GetNextId("id"), id, scheme);
         }
         /// <summary>
+        /// Add generic metadata 
+        /// </summary>
+        /// <param name="name">meta element name</param>
+        /// <param name="value">meta element value</param>
+        public void AddMetaItem(string name, string value)
+        {
+            _metadata.AddItem(name, value);
+        }
+
+        /// <summary>
         /// Generate document and save to specified filename
         /// </summary>
         /// <param name="epubFile">document's filename</param>
