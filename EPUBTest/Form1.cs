@@ -40,15 +40,19 @@ namespace EPUBTest
                 css += "@font-face { font-family : LiberationSerif; font-weight : normal; font-style: italic; src : url(LiberationSerif-Italic.ttf); }\n";
                 css += "@font-face { font-family : LiberationSerif; font-weight : bold; font-style: normal; src : url(LiberationSerif-Bold.ttf); }\n";
                 css += "@font-face { font-family : LiberationSerif; font-weight : bold; font-style: italic; src : url(LiberationSerif-BoldItalic.ttf); }\n";
-                 
+
                 epub.AddData("LiberationSerif-Regular.ttf", EPUBTest.Properties.Resources.LiberationSerif_Regular, "application/octet-stream");
                 epub.AddData("LiberationSerif-Bold.ttf", EPUBTest.Properties.Resources.LiberationSerif_Bold, "application/octet-stream");
                 epub.AddData("LiberationSerif-Italic.ttf", EPUBTest.Properties.Resources.LiberationSerif_Italic, "application/octet-stream");
                 epub.AddData("LiberationSerif-BoldItalic.ttf", EPUBTest.Properties.Resources.LiberationSerif_BoldItalic, "application/octet-stream");
             }
-            
-                
+
             epub.AddStylesheetData("style.css", css);
+            Bitmap coverImg = EPUBTest.Properties.Resources.pngSample;
+            MemoryStream coverData = new MemoryStream();
+            coverImg.Save(coverData, ImageFormat.Png);
+            String coverId = epub.AddImageData("cover.png", coverData.GetBuffer());
+            epub.AddMetaItem("cover", coverId);
 
             String page_template = Encoding.UTF8.GetString(EPUBTest.Properties.Resources.page);
 
@@ -73,7 +77,6 @@ namespace EPUBTest
             String page = page_template.Replace("%%CONTENT%%", content);
 
             String pageName = String.Format("page{0}.xhtml", pageCounter);
- 
             epub.AddXhtmlData(pageName, page);
             epub.AddNavPoint("Lorem ipsum", pageName, navCounter++);
             pageCounter++;
