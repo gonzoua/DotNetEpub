@@ -45,7 +45,7 @@ namespace Epub
         {
             var element = new XElement("meta");
             element.SetAttributeValue("name", _name);
-            element.SetAttributeValue("value", _value);
+            element.SetAttributeValue("content", _value);
 
             return element;
         }
