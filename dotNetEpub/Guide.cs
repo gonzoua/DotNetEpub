@@ -47,7 +47,7 @@ namespace Epub
         internal void AddReference(string href, string type, string title)
         {
             var itemref = new XElement(Document.OpfNS + "reference",
-                new XAttribute("type", type), new XAttribute("title", title));
+                new XAttribute("href", href), new XAttribute("type", type), new XAttribute("title", title));
             if (!String.IsNullOrEmpty(title))
                 itemref.SetAttributeValue("title", title);
             _element.Add(itemref);
