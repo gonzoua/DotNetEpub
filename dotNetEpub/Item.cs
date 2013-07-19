@@ -43,7 +43,7 @@ namespace Epub
 
         internal XElement ToElement()
         {
-            var element = new XElement("meta");
+            var element = new XElement(Document.OpfNS + "meta");
             element.SetAttributeValue("name", _name);
             element.SetAttributeValue("content", _value);
 

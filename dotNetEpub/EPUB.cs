@@ -505,5 +505,24 @@ namespace Epub
             String id = GetNextId("navid");
             return _ncx.AddNavPoint(label, id, content, playOrder);
         }
+        /// <summary>
+        /// Add reference to guide
+        /// </summary>
+        /// <param name="href">href of guide reference</param>
+        /// <param name="type">type of guide reference</param>
+        public void AddReference(string href, string type)
+        {
+            _guide.AddReference(href, type);
+        }
+        /// <summary>
+        /// Add reference to guide
+        /// </summary>
+        /// <param name="href">href of guide reference</param>
+        /// <param name="type">type of guide reference</param>
+        /// <param name="title">title of guide reference</param>
+        public void AddReference(string href, string type, string title)
+        {
+            _guide.AddReference(href, type, title);
+        }
     }
 }
