@@ -59,7 +59,7 @@ namespace Epub
         {
             XNamespace ns = "urn:oasis:names:tc:opendocument:xmlns:container";
             XElement element = new XElement(ns + "container",
-                new XAttribute("version", "2.0"));
+                new XAttribute("version", "1.0"));
 
             XElement filesElement = new XElement(ns + "rootfiles");
             foreach (RootFile r in _rootFiles)
