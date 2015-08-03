@@ -255,6 +255,7 @@ namespace Epub
             WriteOpf("content.opf");
             WriteNcx("toc.ncx");
             WriteContainer();
+            WriteAppleIBooksDisplayOptions();
 
             using (ZipFile zip = new ZipFile())
             {
@@ -493,6 +494,15 @@ namespace Epub
             XElement e = _container.ToElement();
             e.Save(fullPath);
         }
+
+        private void WriteAppleIBooksDisplayOptions()
+        {
+            var fullPath = Path.Combine(GetMetaInfDirectory(), "com.apple.ibooks.display-options.xml");
+            var options = new AppleIBooksDisplayOptions();
+            var element = options.ToElement();
+            element.Save(fullPath);
+        }
+
         /// <summary>
         /// Add navigation point to top-level Table of Contents. 
         /// </summary>
