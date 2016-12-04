@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppleIBooksDisplayOptions.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="DCItem.cs" />
     <Compile Include="EPUB.cs" />
